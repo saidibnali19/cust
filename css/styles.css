@@ -1,0 +1,51 @@
+body {
+    cursor: none;
+    overflow: hidden;
+    background-color: black;
+    min-height: 100vh;
+    min-height: 100svh;
+}
+
+.custom-mouse-tracker {
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+    }
+
+    &::before {
+        background-color: white;
+        width: 200px;
+        aspect-ratio: 1;
+        top: var(--y, 0);
+        left: var(--x, 0);
+        translate: -50% -50%;
+        filter: blur(2rem);
+        border-radius: 50%;
+    }
+
+    &::after {
+        inset: 0;
+        background: radial-gradient(circle, lime, transparent 30%),
+            conic-gradient(
+                red,
+                blue,
+                green,
+                yellow,
+                purple,
+                magenta,
+                cyan,
+                yellow,
+                orangered,
+                red
+            );
+        mix-blend-mode: color-burn;
+        animation: rotate-hue 10s linear infinite;
+    }
+}
+
+@keyframes rotate-hue {
+    to {
+        filter: hue-rotate(360deg);
+    }
+}
